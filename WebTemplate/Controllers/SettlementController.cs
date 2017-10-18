@@ -30,5 +30,10 @@ namespace WebTemplate.Controllers
         {
             return View();
         }
+
+        public ActionResult NotaSettlement()
+        {
+            return View();
+        }
     }
 }

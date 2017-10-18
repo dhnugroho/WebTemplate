@@ -291,6 +291,8 @@
     <Content Include="Views\ActualCost\Cost.Mobile.cshtml" />
     <Content Include="Views\ActualCost\Cost.cshtml" />
     <Content Include="Views\DIT\Index.cshtml" />
+    <Content Include="Views\Settlement\NotaSettlement.cshtml" />
+    <Content Include="Views\Settlement\NotaSettlement.Mobile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
