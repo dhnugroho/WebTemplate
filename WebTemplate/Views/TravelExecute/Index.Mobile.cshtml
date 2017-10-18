@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebTemplate.Models.Participant>
+
+@{
+    ViewBag.Title = "TRAVEL EXECUTION";
+    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="Absolute-Center">
+            <hr>
+            <div class="col-sm-12 col-md-10 col-md-offset-1">
+                @foreach (var item in Model)
+                {
+                    <a href="/TravelExecute/Executed">
+                        <div class="col-lg-12 cont-bg">
+                            <span style="padding:0 10px"><img style="margin:5px 0px; width:auto; height:50px" src="~/img/Travel-Execution-icon-b.png" /></span><span class="templatetext">@Html.DisplayFor(modelItem => item.NoregId)</span><span class="designationstyle">&nbsp;(in @Html.DisplayFor(modelItem => item.City) )</span><span style="float:right; padding:20px 20px;" class="glyphicon glyphicon-chevron-right"></span>
+                        </div>
+                        <hr />
+                    </a>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+        function goBack() {
+            window.history.back();
+        }
+</script>
+
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="mySmallModalLabel">Small modal</h4>
+            </div>
+            <div class="modal-body">
+                Hai... <strong>USER</strong>. Request Anda Sudah dikirim, tunggu informasi lebih lanjut..
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebTemplate.Models.Participant>
+
+@{
+    ViewBag.Title = "PARTICIPANT";
+    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="Absolute-Center">
+            <hr>
+            <div class="col-sm-12 col-md-10">
+                <form class="width" action="/Home/Contact" id="loginForm">
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input class="form-control" type="text" name='username' placeholder="Noreg." />
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                        <input class="form-control" type="text" name='username' placeholder="Automatic Name" />
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-toolbar btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-plus"></span>&nbsp;ADD</button>
+                    </div>
+                </form>
+                <div class="well">
+                    <img style="height:35px; width:auto;" src="~/img/small_logo_c.png" />
+                    <span><strong>LIST PARTICIPANT :</strong></span>
+                </div>
+                <div style="padding:0 5px">
+
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NoregId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NoregId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("| Delete |", "| Delete |", new { id = item.NoregId })
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+

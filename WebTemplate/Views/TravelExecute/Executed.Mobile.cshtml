@@ -1,0 +1,96 @@
+﻿@model IEnumerable<WebTemplate.Models.Participant>
+
+@{
+    ViewBag.Title = "TRAVEL EXECUTION";
+    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="Absolute-Center">
+            <hr>
+            <div class="col-xs-12 col-lg-10">
+                <div>
+                    <label>Geo Taging</label>
+                </div>
+                <form id="form1" runat="server">
+                    <div>
+                        <button class="btn-primary">Check Location</button>
+                    </div>
+                    <div class="thumbnail" style="margin-top:10px; height:200px; width:100%;">
+                        <div id="map_canvas" style="width: 100%; height: 200px;"></div>
+                    </div>
+                </form>
+            </div>
+            <hr>
+            <div class="col-xs-12 col-lg-10">
+                <div>
+                    <label>Upload Picture</label>
+                </div>
+                <div>
+                    <input type="file" id="SelectImage" />
+                    <a style="margin-top:10px" href="#" class="btn btn-sm btn-danger" onclick="UploadImage()">Upload</a>
+                </div>
+                <div class="col-xs-12 col-lg-12">
+                    <div style="margin-top:10px" class="col-md-12 thumbnail" id="UploadedImage"></div>
+                </div>
+                <div style="margin-top:15px" class="width">
+                    <button style="width:145px" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm">Submit</button>
+                    <button style="width:145px" type="button" class="btn btn-default btn-lg" onclick="goBack()">Cancel</button>
+                </div>
+                <hr />
+            </div>
+</div>
+    </div>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJP3X7VXW1rv0yK97KRPlJAiPPsL2mEgg&callback=initMap"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(success);
+        } else {
+            alert("Geo Location is not supported on your current browser!");
+        }
+        function success(position) {
+            var lat = position.coords.latitude;
+            var long = position.coords.longitude;
+            var city = position.coords.locality;
+            var myLatlng = new google.maps.LatLng(lat, long);
+            var myOptions = {
+                center: myLatlng,
+                zoom: 12,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                title: "lat: " + lat + " long: " + long
+            });
+
+
+            marker.setMap(map);
+            var infowindow = new google.maps.InfoWindow({ content: "<b>User Address</b><br/> Latitude:" + lat + "<br /> Longitude:" + long + "" });
+            infowindow.open(map, marker);
+        }
+    </script>
+    <script>
+        var UploadImage = function () {
+            var file = $("#SelectImage").get(0).files;
+            var data = new FormData;
+            data.append("ImageFile", file[0]);
+            $.ajax({
+                type: "POST",
+                url: "/TravelExecute/ImageUpload",
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function (imgID) {
+                    $("#UploadedImage").append('<img src="/TravelExecute/DisplayingImage?imgID=' + imgID + '"class=img-responsive  thumbnail"/>');
+                }
+            })
+        }
+    </script>
+    
+
+
+

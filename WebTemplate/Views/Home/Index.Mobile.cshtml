@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_LayoutXs.cshtml";
+}
+    <div class="container">
+        <div class="row">
+            <div style="margin:200px auto" class="Absolute-Center">
+                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                    <hr />
+                        <form class="width" action="/Home/Menu/" id="loginForm">
+                            <div class="form-group input-group">
+                                <input class="form-control" type="text" name='username' placeholder="username" />
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            </div>
+                            <div class="form-group input-group">
+                                <input class="form-control" type="password" name='password' placeholder="password" />
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            </div>
+                            <div class="form-group">
+                                <a href="/Menu/" class="btn btn-info btn-block"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Sign In</a>
+                            </div>
+                        </form>
+                    <footer class="footer modal-footer">
+                        <p style="text-align:center">&copy; @DateTime.Now.Year - PT Toyota Astra Motor</p>
+                    </footer>
+                    </div>
+            </div>
+          </div>
+      </div>

@@ -1,0 +1,160 @@
+﻿@{
+    ViewBag.Title = "TRAVEL REQUEST";
+    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+}
+@model IEnumerable<WebTemplate.Models.Participant>
+
+<div class="container">
+    <div class="row">
+        <div class="Absolute-Center">
+            <hr>
+            <div class="col-sm-12 col-md-10 col-md-offset-1">
+                <form class="width" action="" id="loginForm">
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>
+                        <input class="form-control" type="text" name='noreg' placeholder="No. Reg" />
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input class="form-control" type="text" name='username' placeholder="Username" />
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-stats"></i></span>
+                        <input class="form-control" type="text" name='class' placeholder="Class" />
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-th-large"></i></span>
+                        <input class="form-control" type="text" name='division' placeholder="Division" />
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-check"></i></span>
+                        <input class="form-control" type="text" name='division' placeholder="Assigned By" />
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                        <input class="form-control" type="text" name='reason' placeholder="Reason of Assigment" />
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
+                        <select class="form-control">
+                            <option style="color:darkgray" hidden>Request Type</option>
+                            <option value="plan">PLAN</option>
+                            <option value="unplan">UNPLAN</option>
+                        </select>
+                    </div>
+                    <strong>Travel Type :</strong>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios1" id="optionsRadiosDomestic" value="single" checked>
+                            Single
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios1" id="optionsRadiosOverseas" value="multiple">
+                            Multiple
+                        </label>
+                    </div>
+                    <strong>Destination :</strong>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios2" id="optionsRadiosDomestic" value="domestic" checked>
+                            Domestic
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios2" id="optionsRadiosOverseas" value="overseas">
+                            Overseas
+                        </label>
+                    </div>
+                    <input class="form-control" type="text" name='destination' style="margin-top: 3px;" placeholder="Where To Go" />
+                    <br />
+                    <p>Derparture Date :</p>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input class="form-control" type="datetime-local" name='departure' placeholder="Departure" />
+                    </div>
+                    <p>Return Date :</p>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input class="form-control" type="datetime-local" name='return' placeholder="Return" />
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                        <input class="form-control" type="text" name='request' placeholder="Duration" />
+                    </div>
+                    <strong>New or Renewal Passport ?</strong>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios3" id="optionsRadios1" value="yes" checked>
+                            Yes
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios3" id="optionsRadios2" value="no">
+                            No
+                        </label>
+                    </div>
+                    <label>Budget :</label>
+                    <br />
+                    <div class="form-group input-group has-success has-feedback">
+                        <span class="input-group-addon">RP.</span>
+                        <input class="form-control" type="number" name='budget' placeholder="Meal" />
+                    </div>
+                    <div class="form-group input-group has-success has-feedback">
+                        <span class="input-group-addon">RP.</span>
+                        <input class="form-control" type="number" name='budget' placeholder="Hotel" />
+                    </div>
+                    <div class="form-group input-group has-success has-feedback">
+                        <span class="input-group-addon">RP.</span>
+                        <input class="form-control" type="number" name='budget' placeholder="Ticket" />
+                    </div>
+                    <div class="form-group input-group has-warning">
+                        <span class="input-group-addon">RP.</span>
+                        <input class="form-control" type="number" name='budget' placeholder="TOTAL" />
+                    </div>
+                    <label>Payment Transfer to :</label>
+                    <div class="form-group input-group">
+                        @foreach (var item in Model)
+                        {
+                            <ul>
+                                <li class="list">Account Name : <strong>@Html.DisplayFor(modelItem => item.Name)</strong></li>
+                                <li class="list">Bank Name : <strong>@Html.DisplayFor(modelItem => item.NoregId)</strong></li>
+                                <li class="list">Account Number : <strong>@Html.DisplayFor(modelItem => item.Amount)</strong></li>
+                            </ul>
+                        }
+                    </div>
+                    <div class="form-group">
+                        <a href="/Participant/" class="btn btn-default btn-block"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add Participant</a>
+                    </div>
+                    <button style="width:145px" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm">Submit</button>
+                    <button style="width:145px" type="button" class="btn btn-default btn-lg" onclick="goBack()">Cancel</button>
+                </form>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Small modal -->
+
+<script>
+		function goBack() {
+			window.history.back();
+		}
+</script>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="mySmallModalLabel">Small modal</h4>
+            </div>
+            <div class="modal-body">
+                Hai... <strong>USER</strong>. Request Anda Sudah dikirim, tunggu informasi lebih lanjut..
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<WebTemplate.Models.Participant>
+
+@{
+    ViewBag.Title = "Travel Status List";
+    Layout = "~/Views/Shared/_LayoutLg.cshtml";
+}
+<div style="height:100px; padding:70px 0 0 0;" class="well navbar-fixed-top">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Menu/">Home</a></li>
+        <li class="breadcrumb-item active">Travel Status List</li>
+    </ol>
+</div>
+<div class="container">
+    <div style="margin-top:120px; padding:0 100px;" id="products" class="row list-group _3EibU">
+        @foreach (var item in Model)
+        {
+            <div class="item col-xs-6 col-lg-6">
+                <div class="thumbnail">
+                    <div class="clearfix">
+                        <div class="column content">
+                            <a href="/TravelStatus/TravelStatus"><img style="margin:5px 0px; width:auto; height:50px" src="~/img/Travel-Status-icon-b.png" /></a>
+                        </div>
+
+                        <div class="column menu">
+                            <div>
+                                <span class="templatetext">@Html.DisplayFor(modelItem => item.NoregId)</span>
+                            </div>
+                            <div>
+                                <span class="fnt2">Traveling to @Html.DisplayFor(modelItem => item.City)</span>
+                            </div>
+                            <div>
+                                <span>Total Participant : @Html.DisplayFor(modelItem => item.Age)</span>
+                            </div>
+                            @if (item.Age > 1)
+                            {
+                                <div>
+                                    <span class="fnt1">Travel Group</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div>
+                                    <span class="fnt1">Travel Individual</span>
+                                </div>
+                            }
+                            <div>
+                                <span>Current Status: <span class="fntred">@Html.DisplayFor(modelItem => item.City)</span></span>
+                            </div>
+
+                        </div>
+
+                        <div class="column content2">
+                            <strong><span>Rp. @Html.DisplayFor(modelItem => item.Amount)</span></strong>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
