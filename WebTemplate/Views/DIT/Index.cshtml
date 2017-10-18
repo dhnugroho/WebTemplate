@@ -66,12 +66,8 @@
                                     Rp. @Html.DisplayFor(modelItem => item.Amount)
                                 </td>
                                 <td>
-                                    <div class="btn btn-lg btn-outline-primary">
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.NoregId })
-                                    </div>
-                                    <div style="color:white" class="btn btn-lg btn-outline-danger">
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.NoregId })
-                                    </div>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.NoregId }, new { @class = "btn btn-lg btn-outline-primary" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.NoregId }, new { @class = "btn btn-lg btn-outline-danger" })
                                </td>
                             </tr>
                         }

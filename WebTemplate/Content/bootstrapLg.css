@@ -7098,3 +7098,7 @@ ol li::after {
     text-align:left; 
     color:deepskyblue;
 }
+
+.link {
+    color:black;
+}
