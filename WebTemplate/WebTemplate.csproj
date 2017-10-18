@@ -200,6 +200,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\menu-actual-cost.png" />
+    <Content Include="img\menu-upload-dit.png" />
     <Content Include="img\Travel-Status-icon-b.png" />
     <Content Include="img\image_banner.jpg" />
     <Content Include="img\large_logo.png" />
