@@ -7105,8 +7105,10 @@ ol li::after {
     color:white;
 }
 
-.td{
-    text-align:center;
+.td {
+    color: darkslategray;
+    padding-top: 125px;
+    text-align: center;
 }
 
 .checkbox label:after {
