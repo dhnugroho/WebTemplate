@@ -1,0 +1,79 @@
+﻿@model IEnumerable<WebTemplate.Models.Participant>
+
+@{
+    ViewBag.Title = "PARTICIPANT";
+    Layout = "~/Views/Shared/_LayoutLg.cshtml";
+}
+<div style="height:100px; padding:70px 0 0 0;" class="well navbar-fixed-top">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Menu/">Home</a></li>
+        <li class="breadcrumb-item active">Upload DIT</li>
+    </ol>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div style="margin:100px 100px 0 100px;" class="col-sm-12 col-md-10">
+            <form class="width" action="/Home/Contact" id="loginForm">
+                <div class="clearfix">
+                    <div style="padding:0 5px">
+                        <table class="table">
+                            <tr style="background-color:deepskyblue; text-align:center;">
+                                <th class="th">
+                                    @Html.DisplayNameFor(model => model.NoregId)
+                                </th>
+                                <th class="th">
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </th>
+                                <th class="th">
+                                    @Html.DisplayNameFor(model => model.City)
+                                </th>
+                                <th class="th">
+                                    @Html.DisplayNameFor(model => model.Amount)
+                                </th>
+                                <th class="th">
+                                    Operation
+                                </th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="td">
+                                        <div style="margin:0 0" class="checkbox">
+                                            <label>@Html.DisplayFor(modelItem => item.NoregId)</label>
+                                        </div>
+                                    </td>
+                                    <td class="td">
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td class="td">
+                                        @Html.DisplayFor(modelItem => item.City)
+                                    </td>
+                                    <td class="td">
+                                        Rp. @Html.DisplayFor(modelItem => item.Amount)
+                                    </td>
+                                    <td class="td">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" value="">
+                                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <button style="width:auto" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm">Submit</button>
+                    <a href="/Menu/" style="width:auto" class="btn btn-default btn-lg">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
