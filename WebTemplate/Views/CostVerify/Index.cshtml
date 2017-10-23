@@ -32,16 +32,19 @@
                                     @Html.DisplayNameFor(model => model.Amount)
                                 </th>
                                 <th class="th">
-                                    Operation
+                                    <div style="margin:1.5px 0" class="checkbox">
+                                        <label>
+                                            <input type="checkbox" class="select-all checkbox" name="select-all" />
+                                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                        </label>
+                                    </div>
                                 </th>
                             </tr>
                             @foreach (var item in Model)
                             {
-                                <tr>
+                                <tr class="table-responsive">
                                     <td class="td">
-                                        <div style="margin:0 0" class="checkbox">
-                                            <label>@Html.DisplayFor(modelItem => item.NoregId)</label>
-                                        </div>
+                                        @Html.DisplayFor(modelItem => item.NoregId)
                                     </td>
                                     <td class="td">
                                         @Html.DisplayFor(modelItem => item.Name)
@@ -53,9 +56,9 @@
                                         Rp. @Html.DisplayFor(modelItem => item.Amount)
                                     </td>
                                     <td class="td">
-                                        <div class="checkbox">
+                                        <div style="margin:1.5px" class="checkbox">
                                             <label>
-                                                <input type="checkbox" value="">
+                                                <input type="checkbox" class="select-item checkbox" name="select-item" value="1000" />
                                                 <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                             </label>
                                         </div>
@@ -64,16 +67,78 @@
                             }
                         </table>
                     </div>
-                    <button style="width:auto" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm">Submit</button>
-                    <a href="/Menu/" style="width:auto" class="btn btn-default btn-lg">Cancel</a>
+                    <div>
+                        <button id="selected" class="btn btn-danger">Confirm</button>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
+<script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script>
-    function goBack() {
-        window.history.back();
-    }
+    $(function () {
+
+        //button select all or cancel
+        $("#select-all").click(function () {
+            var all = $("input.select-all")[0];
+            all.checked = !all.checked
+            var checked = all.checked;
+            $("input.select-item").each(function (index, item) {
+                item.checked = checked;
+            });
+        });
+
+        //button select invert
+        $("#select-invert").click(function () {
+            $("input.select-item").each(function (index, item) {
+                item.checked = !item.checked;
+            });
+            checkSelected();
+        });
+
+        //button get selected info
+        $("#selected").click(function () {
+            var items = [];
+            $("input.select-item:checked:checked").each(function (index, item) {
+                items[index] = item.value;
+            });
+            if (items.length < 1) {
+                alert("no selected items!!!");
+            } else {
+                var values = items.join(',');
+                console.log(values);
+                var html = $("<div></div>");
+                html.html("selected:" + values);
+                html.appendTo("body");
+            }
+        });
+
+        //column checkbox select all or cancel
+        $("input.select-all").click(function () {
+            var checked = this.checked;
+            $("input.select-item").each(function (index, item) {
+                item.checked = checked;
+            });
+        });
+
+        //check selected items
+        $("input.select-item").click(function () {
+            var checked = this.checked;
+            console.log(checked);
+            checkSelected();
+        });
+
+        //check is all selected
+        function checkSelected() {
+            var all = $("input.select-all")[0];
+            var total = $("input.select-item").length;
+            var len = $("input.select-item:checked:checked").length;
+            console.log("total:" + total);
+            console.log("len:" + len);
+            all.checked = len === total;
+        }
+    });
 </script>

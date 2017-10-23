@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebTemplate.Models.Participant>
+﻿
 
 @{
     ViewBag.Title = "TRAVEL EXECUTION";
@@ -66,6 +66,8 @@
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJP3X7VXW1rv0yK97KRPlJAiPPsL2mEgg&callback=initMap&&sensor=false"></script>
 <script type="text/javascript">
+   
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(success);
     } else {
@@ -80,7 +82,7 @@
         var myLatlng = new google.maps.LatLng(lat, long);
         var myOptions = {
             center: myLatlng,
-            zoom: 12,
+            zoom: 15,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
@@ -88,7 +90,6 @@
             position: myLatlng,
             title: "lat: " + lat + " long: " + long
         });
-
 
         marker.setMap(map);
         var infowindow = new google.maps.InfoWindow({ content: "<b>User Address</b><br/> Latitude:" + lat + "<br /> Longitude:" + long + "<br /> City:" + city + "" });
