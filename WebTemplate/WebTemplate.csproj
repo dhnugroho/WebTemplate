@@ -222,6 +222,7 @@
     <Content Include="img\Travel-Request-with-texticon.png" />
     <Content Include="img\Travel-Status-icon.png" />
     <Content Include="img\Travel-Status-with-text-icon.png" />
+    <Content Include="img\twice1.jpg" />
     <Content Include="Models\ModelImg.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelImg.edmx</DependentUpon>
