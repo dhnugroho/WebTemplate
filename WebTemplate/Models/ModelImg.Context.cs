@@ -26,5 +26,6 @@ namespace WebTemplate.Models
         }
     
         public virtual DbSet<StoreImage> StoreImages { get; set; }
+        public virtual DbSet<tbl_registration> tbl_registration { get; set; }
     }
 }

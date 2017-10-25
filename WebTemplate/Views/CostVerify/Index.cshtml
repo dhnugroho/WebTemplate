@@ -1,37 +1,53 @@
-﻿@model IEnumerable<WebTemplate.Models.Participant>
+﻿@model List<WebTemplate.Models.tbl_registration>
 
 @{
-    ViewBag.Title = "PARTICIPANT";
+    ViewBag.Title = "Actual Cost Verivy";
     Layout = "~/Views/Shared/_LayoutLg.cshtml";
+    var grid = new WebGrid(canPage: true, rowsPerPage: 10);
+    grid.Bind(source: Model, rowCount: ViewBag.TotalRows, autoSortAndPage: false);
 }
 <div style="height:100px; padding:70px 0 0 0;" class="well navbar-fixed-top">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/Menu/">Home</a></li>
-        <li class="breadcrumb-item active">Upload DIT</li>
+        <li class="breadcrumb-item active">Actual Cost Verivication</li>
     </ol>
 </div>
 
 <div class="container">
     <div class="row">
         <div style="margin:100px 100px 0 100px;" class="col-sm-12 col-md-10">
+            <div style="margin-top:20px;">
+                <div class="collapse navbar-collapse">
+                    @using (Html.BeginForm("index", "CostVerify", FormMethod.Get, new { @class = "navbar-form navbar-left" }))
+                    {
+                        <div class="form-group">
+                            <input type="text" name="search" value="@ViewBag.search" class="form-control" placeholder="search" />
+                        </div>
+                        <button type="submit" value="Search" class="btn btn-success">Search</button>
+                    }
+                </div>
+            </div>
             <form class="width" action="/Home/Contact" id="loginForm">
                 <div class="clearfix">
                     <div style="padding:0 5px">
                         <table class="table">
                             <tr style="background-color:deepskyblue; text-align:center;">
-                                <th class="th">
-                                    No Reg
-                                </th>
-                                <th class="th">
+                                <th class="th info">
                                     Name
                                 </th>
-                                <th class="th">
+                                <th class="th info">
+                                    Email
+                                </th>
+                                <th class="th info">
                                     City
                                 </th>
-                                <th class="th">
-                                    Amount
+                                <th class="th info">
+                                    Address
                                 </th>
-                                <th class="th">
+                                <th class="th info">
+                                    Status
+                                </th>
+                                <th class="th info">
                                     <div style="margin:1.5px 0" class="checkbox">
                                         <label>
                                             <input type="checkbox" class="select-all checkbox" name="select-all" />
@@ -44,16 +60,19 @@
                             {
                                 <tr class="table-responsive">
                                     <td class="td">
-                                        @Html.DisplayFor(modelItem => item.NoregId)
+                                        @Html.DisplayFor(modelItem => item.Name)
                                     </td>
                                     <td class="td">
-                                        @Html.DisplayFor(modelItem => item.Name)
+                                        @Html.DisplayFor(modelItem => item.Email)
                                     </td>
                                     <td class="td">
                                         @Html.DisplayFor(modelItem => item.City)
                                     </td>
                                     <td class="td">
-                                        Rp. @Html.DisplayFor(modelItem => item.Amount)
+                                        @Html.DisplayFor(modelItem => item.Address)
+                                    </td>
+                                    <td class="td">
+                                        @Html.DisplayFor(modelItem => item.Status)
                                     </td>
                                     <td class="td">
                                         <div style="margin:1.5px" class="checkbox">
@@ -67,10 +86,15 @@
                             }
                         </table>
                     </div>
-                    <div>
+                    <div style="margin: 20px 0" class="col-sm-7">
                         <a href="#" id="selected" class="btn btn-danger">Confirm</a>
                         <a href="#" id="select-all" class="btn btn-info">Select All</a>
                     </div>
+                    <div class="col-sm-5">
+                        @grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-small pagination-right")
+                    </div>
+                    @Html.Hidden("dir", grid.SortDirection)
+                    @Html.Hidden("col", grid.SortColumn)
                 </div>
             </form>
         </div>
@@ -80,6 +104,23 @@
 <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script>
+    $(function () {
+        try {
+            var dir = $('#dir').val();
+            var col = $('#col').val();
+            var header = $("th a[href*=" + col + "]");
+            if (dir == "Ascending") {
+                header.text(header.text() + "  ▲")
+            }
+            if (dir == "Descending") {
+                header.text(header.text() + "  ▼");
+            }
+
+        } catch (e) {
+
+        }
+    })
+
     $(function () {
 
         //button select all or cancel
@@ -109,6 +150,9 @@
             if (items.length < 1) {
                 alert("no selected items!!!");
             } else {
+                //UPDATE actualCOst
+                //SET status = 'Confirm/1'
+                //WHERE ActualID = {(id)};
                 var values = items.join(',');
                 console.log(values);
                 var html = $("<div></div>");
