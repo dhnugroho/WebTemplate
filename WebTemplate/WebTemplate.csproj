@@ -156,7 +156,9 @@
     <Compile Include="Controllers\ActualCostController.cs" />
     <Compile Include="Controllers\CostVerifyController.cs" />
     <Compile Include="Controllers\DITController.cs" />
+    <Compile Include="Controllers\GenerateFileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ParticipantController.cs" />
     <Compile Include="Controllers\SettlementController.cs" />
@@ -309,6 +311,12 @@
     <Content Include="Views\CostVerify\Index.cshtml" />
     <Content Include="Views\DIT\Index.cshtml" />
     <Content Include="Views\DIT\View.cshtml" />
+    <Content Include="Views\Master\Create.cshtml" />
+    <Content Include="Views\Master\Delete.cshtml" />
+    <Content Include="Views\Master\Details.cshtml" />
+    <Content Include="Views\Master\Edit.cshtml" />
+    <Content Include="Views\Master\Index.cshtml" />
+    <Content Include="Views\GenerateFile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

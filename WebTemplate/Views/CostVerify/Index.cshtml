@@ -50,7 +50,7 @@
                                 <th class="th info">
                                     <div style="margin:1.5px 0" class="checkbox">
                                         <label>
-                                            <input type="checkbox" class="select-all checkbox" name="select-all" />
+                                            <input type="checkbox" onClick="toggle(this)" class="select-all checkbox" name="select-all"  />
                                             <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                         </label>
                                     </div>
@@ -121,6 +121,13 @@
         }
     })
 
+    function toggle(source) {
+        checkboxes = document.getElementsByName('select-item');
+        for (var i = 0, n = checkboxes.length; i < n; i++) {
+            checkboxes[i].checked = source.checked;
+        }
+    }
+    tbl_registration
     $(function () {
 
         //button select all or cancel
