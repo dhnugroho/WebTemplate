@@ -42,7 +42,7 @@
                                     City
                                 </th>
                                 <th class="th info">
-                                    Address
+                                    Allowance
                                 </th>
                                 <th class="th info">
                                     Status
@@ -69,15 +69,15 @@
                                         @Html.DisplayFor(modelItem => item.City)
                                     </td>
                                     <td class="td">
-                                        @Html.DisplayFor(modelItem => item.Address)
+                                        @Html.DisplayFor(modelItem => item.Allowance)
                                     </td>
-                                    <td class="td">
+                                    <td class="td item_requeststatus">
                                         @Html.DisplayFor(modelItem => item.Status)
                                     </td>
-                                    <td class="td">
+                                    <td class="td" id="item_checkbox">
                                         <div style="margin:1.5px" class="checkbox">
                                             <label>
-                                                <input type="checkbox" class="select-item checkbox" name="select-item" value="1000" />
+                                                <input onclick="toggleclick(this,2)" class="select-item checkbox switch-toggle switch-flat-mini switch-toggle-flat" type="checkbox" name="select-item" value="1000" />
                                                 <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                             </label>
                                         </div>
@@ -104,6 +104,17 @@
 <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script>
+    function toggleclick(_this, x) {
+        //var table = document.getElementById("visitor_table");
+        var row = $(_this).closest('tr');
+        if ($(_this).is(':checked')) // check if checkbox is checked or not
+        {
+            row.find("td:eq(4)").html("Verify"); //find 3rd cell and set HTML
+        } else {
+            row.find("td:eq(4)").html("Pending");
+        }
+    }
+
     $(function () {
         try {
             var dir = $('#dir').val();
@@ -127,6 +138,7 @@
             checkboxes[i].checked = source.checked;
         }
     }
+
     tbl_registration
     $(function () {
 

@@ -8,12 +8,12 @@
 <div style="height:100px; padding:70px 0 0 0;" class="well navbar-fixed-top">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/Menu/">Home</a></li>
-        <li class="breadcrumb-item active">Travel Request</li>
+        <li class="breadcrumb-item active">Travel Assignment</li>
     </ol>
 </div>
 <div class="container">
     <div style="margin-top:100px" class="row">
-        <div class="col-md-8 col-md-offset-1"><h4 style="text-align:left; padding:10px;">TRAVEL REQUEST</h4></div>
+        <div class="col-md-8 col-md-offset-1"><h4 style="text-align:left; padding:10px;">TRAVEL ASSIGNMENT</h4></div>
         <div class="col-md-3"></div>
         <form action="" id="loginForm">
             <div class="col-md-5 col-md-offset-1">
@@ -71,6 +71,14 @@
                 </div>
             </div>
             <div class="col-md-5">
+                <div class="form-group input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
+                    <select class="form-control">
+                        <option style="color:darkgray" hidden>Travel Purpose</option>
+                        <option value="plan">Meeting</option>
+                        <option value="unplan">Training</option>
+                    </select>
+                </div>
                 <div class="form-group input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
                     <input class="form-control" type="text" name='reason' placeholder="Reason of Assigment" />

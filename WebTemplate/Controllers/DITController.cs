@@ -10,6 +10,8 @@ using System.IO;
 using WebTemplate.Models;
 using System.Linq.Dynamic;
 using System.Collections.Generic;
+using System.Net;
+using System.Data.Entity;
 
 namespace WebTemplate.Controllers
 {
@@ -17,6 +19,7 @@ namespace WebTemplate.Controllers
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ConnectionString);
         OleDbConnection Econ;
+        private dbFilesEntities1 db = new dbFilesEntities1();
 
         public ActionResult Index(int page = 1, string sort = "Name", string sortdir = "asc", string search = "")
         {
@@ -102,12 +105,116 @@ namespace WebTemplate.Controllers
             objbulk.ColumnMappings.Add("Email", "Email");
             objbulk.ColumnMappings.Add("Password", "Password");
             objbulk.ColumnMappings.Add("Name", "Name");
-            objbulk.ColumnMappings.Add("Address", "Address");
+            objbulk.ColumnMappings.Add("Allowance", "Allowance");
             objbulk.ColumnMappings.Add("City", "City");
             objbulk.ColumnMappings.Add("Age", "Age");
             con.Open();
             objbulk.WriteToServer(dt);
             con.Close();
+        }
+
+        // GET: UploadDit/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tbl_registration tbl_registration = db.tbl_registration.Find(id);
+            if (tbl_registration == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tbl_registration);
+        }
+
+        // GET: UploadDit/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: UploadDit/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Sr_no,Email,Password,Name,Address,City,Age,Status")] tbl_registration tbl_registration)
+        {
+            if (ModelState.IsValid)
+            {
+                db.tbl_registration.Add(tbl_registration);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(tbl_registration);
+        }
+
+        // GET: UploadDit/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tbl_registration tbl_registration = db.tbl_registration.Find(id);
+            if (tbl_registration == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tbl_registration);
+        }
+
+        // POST: UploadDit/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Sr_no,Email,Password,Name,Address,City,Age,Status")] tbl_registration tbl_registration)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(tbl_registration).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(tbl_registration);
+        }
+
+        // GET: UploadDit/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tbl_registration tbl_registration = db.tbl_registration.Find(id);
+            if (tbl_registration == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tbl_registration);
+        }
+
+        // POST: UploadDit/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            tbl_registration tbl_registration = db.tbl_registration.Find(id);
+            db.tbl_registration.Remove(tbl_registration);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
