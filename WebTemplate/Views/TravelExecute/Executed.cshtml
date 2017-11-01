@@ -29,7 +29,7 @@
                         </div>
                         <div style="margin-top:5px" class="col-lg-12 cont-bg">
                             <label>Longitude :</label>
-                            <input style="border:0px" id="lon" type="text" />
+                            <input style="border:0px" id="lon" name="lon" type="text" />
                         </div>
                         <div class="thumbnail" style="margin-top:10px; height:auto; width:100%; text-align:center;">
                             <div id="map_canvas" style="width: 100%; height: 300px;"></div>
@@ -47,7 +47,6 @@
                     <div class="col-lg-12 cont-bg">
                         <div>
                             <input type="file" id="SelectImage" />
-                            <a style="margin-top:10px" href="#" class="btn btn-sm btn-danger" onclick="UploadImage()">Upload</a>
                         </div>
                     </div>
                     <div class="col-xs-12 col-lg-12">
@@ -56,8 +55,9 @@
                 </div>
             </div>
             <div class="item col-lg-12 col">
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm">Submit</button>
-                <button type="button" class="btn btn-default btn-lg" onclick="goBack()">Cancel</button>
+                <a href="#" class="btn btn-lg btn-danger" onclick="UploadImage()" data-toggle="modal" data-target=".bs-example-modal-sm">Upload</a>
+                <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm">Submit</button>-->
+                <button type="button" class="btn btn-default btn-lg" onclick="goBack()">Back</button>
             </div>
         </div>
     </div>
@@ -95,8 +95,6 @@
         var infowindow = new google.maps.InfoWindow({ content: "<b>User Address</b><br/> Latitude:" + lat + "<br /> Longitude:" + long + "<br /> City:" + city + "" });
         infowindow.open(map, marker);
     }
-</script>
-<script>
     var UploadImage = function () {
         var file = $("#SelectImage").get(0).files;
         var data = new FormData;
@@ -116,6 +114,20 @@
         window.history.back();
     }
 </script>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="mySmallModalLabel">NOTICE</h4>
+            </div>
+            <div class="modal-body">
+                Hai... <strong>USER</strong>. Travel has Executed Please Back To Menu..
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

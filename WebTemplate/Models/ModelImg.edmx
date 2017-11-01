@@ -13,6 +13,8 @@
           <Property Name="ImgTitle" Type="nvarchar" MaxLength="255" />
           <Property Name="ImgByte" Type="image" />
           <Property Name="ImgPath" Type="nvarchar" MaxLength="255" />
+          <Property Name="Lat" Type="varchar" MaxLength="50" />
+          <Property Name="Lon" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tbl_registration">
           <Key>
@@ -43,6 +45,8 @@
           <Property Name="ImgTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ImgByte" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ImgPath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Lat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Lon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="dbFilesEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="StoreImages" EntityType="Self.StoreImage" />
@@ -70,6 +74,8 @@
           <EntitySetMapping Name="StoreImages">
             <EntityTypeMapping TypeName="dbFilesModel.StoreImage">
               <MappingFragment StoreEntitySet="StoreImages">
+                <ScalarProperty Name="Lon" ColumnName="Lon" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
                 <ScalarProperty Name="ImgId" ColumnName="ImgId" />
                 <ScalarProperty Name="ImgTitle" ColumnName="ImgTitle" />
                 <ScalarProperty Name="ImgByte" ColumnName="ImgByte" />

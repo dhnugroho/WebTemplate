@@ -18,5 +18,7 @@ namespace WebTemplate.Models
         public string ImgTitle { get; set; }
         public byte[] ImgByte { get; set; }
         public string ImgPath { get; set; }
+        public string Lat { get; set; }
+        public string Lon { get; set; }
     }
 }

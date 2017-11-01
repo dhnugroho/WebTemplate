@@ -38,6 +38,8 @@ namespace WebTemplate.Controllers
             dbFilesEntities1 db = new dbFilesEntities1();
             int imgId = 0;
             var file = model.ImageFile;
+            var Lat = "Latitude";
+            var Lon = "Longitude";
             byte[] imagebyte = null;
             if(file != null)
             {
@@ -45,6 +47,8 @@ namespace WebTemplate.Controllers
                 BinaryReader reader = new BinaryReader(file.InputStream);
                 imagebyte = reader.ReadBytes(file.ContentLength);
                 StoreImage img = new StoreImage();
+                img.Lat = Lat;
+                img.Lon = Lon;
                 img.ImgTitle = file.FileName;
                 img.ImgByte = imagebyte;
                 img.ImgPath = "/UploadImage/" + file.FileName;
