@@ -161,13 +161,16 @@
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ParticipantController.cs" />
+    <Compile Include="Controllers\ParticipantsController.cs" />
     <Compile Include="Controllers\SettlementController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TravelExecuteController.cs" />
     <Compile Include="Controllers\TravelRequestController.cs" />
     <Compile Include="Controllers\TravelStatusController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmpModel.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\ImageViewModel.cs" />
     <Compile Include="Models\ModelImg.Context.cs">
@@ -190,6 +193,9 @@
       <DependentUpon>ModelImg.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_registration.cs">
+      <DependentUpon>ModelImg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tb_r_travel_request_participant.cs">
       <DependentUpon>ModelImg.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -320,6 +326,12 @@
     <Content Include="Views\DIT\Edit.cshtml" />
     <Content Include="Views\DIT\Details.cshtml" />
     <Content Include="Views\DIT\Delete.cshtml" />
+    <Content Include="Views\Participants\Create.cshtml" />
+    <Content Include="Views\Participants\Delete.cshtml" />
+    <Content Include="Views\Participants\Details.cshtml" />
+    <Content Include="Views\Participants\Edit.cshtml" />
+    <Content Include="Views\Participants\Index.cshtml" />
+    <Content Include="Views\Test\AddEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

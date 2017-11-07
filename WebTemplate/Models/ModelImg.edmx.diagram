@@ -7,6 +7,7 @@
       <Diagram DiagramId="a2859cfc089a476c986811d38465990e" Name="Diagram1">
         <EntityTypeShape EntityType="dbFilesModel.StoreImage" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dbFilesModel.tbl_registration" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="dbFilesModel.tb_r_travel_request_participant" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

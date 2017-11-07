@@ -13,14 +13,9 @@ namespace WebTemplate.Controllers
         // GET: TravelExecute
         public ActionResult Index()
         {
+            //List Travel On Going , one travel
             var ParticipantList = new List<Participant>{
-                            new Participant() { NoregId = "TE111", Name = "John", Age = 18, Amount = 1000000, City = "Surabaya" } ,
-                            new Participant() { NoregId = "TE112", Name = "Steve",  Age = 21, Amount = 50000000, City = "Malang" } ,
-                            new Participant() { NoregId = "TE113", Name = "Bill",  Age = 25, Amount = 6000000, City = "Situbondo" } ,
-                            new Participant() { NoregId = "TE114", Name = "Ram" , Age = 20, Amount = 3000000, City = "Cirebon" } ,
-                            new Participant() { NoregId = "TE115", Name = "Ron" , Age = 31, Amount = 2000000, City = "Indramayu" } ,
-                            new Participant() { NoregId = "TE116", Name = "Chris" , Age = 17, Amount = 4000000, City = "Jepang" } ,
-                            new Participant() { NoregId = "TE117", Name = "Rob" , Age = 19, Amount = 5000000, City = "Papua" }
+                            new Participant() { NoregId = "TE111", Name = "John", Age = 18, Amount = 1000000, City = "Surabaya" }
                         };
             // Get the Participants from the database in the real application
 
@@ -33,36 +28,49 @@ namespace WebTemplate.Controllers
             return View();
         }
 
-        public ActionResult ImageUpload(ImageViewModel model)
+        public JsonResult ImageUpload(ImageViewModel model)
         {
             dbFilesEntities1 db = new dbFilesEntities1();
-            int imgId = 0;
-            var file = model.ImageFile;
+            int ImgId = 0;
             var Lat = "Latitude";
             var Lon = "Longitude";
-            byte[] imagebyte = null;
-            if(file != null)
+            var file = model.ImageFile;
+            byte[] Imagebyte = null;
+
+            if (file != null)
             {
+
+                //var fileName = Path.GetFileName(file.FileName);
+                //var extention = Path.GetExtension(file.FileName);
+                //var filenamewithoutextension = Path.GetFileNameWithoutExtension(file.FileName);
+
                 file.SaveAs(Server.MapPath("/UploadImage/" + file.FileName));
+
                 BinaryReader reader = new BinaryReader(file.InputStream);
-                imagebyte = reader.ReadBytes(file.ContentLength);
+
+                Imagebyte = reader.ReadBytes(file.ContentLength);
+
                 StoreImage img = new StoreImage();
                 img.Lat = Lat;
                 img.Lon = Lon;
                 img.ImgTitle = file.FileName;
-                img.ImgByte = imagebyte;
-                img.ImgPath = "/UploadImage/" + file.FileName;
+                img.ImgByte = Imagebyte;
+                img.ImgPath = "/UploadedImage/" + file.FileName;
+                img.IsDelete = 0;
                 db.StoreImages.Add(img);
                 db.SaveChanges();
-                imgId = img.ImgId;
+
+                ImgId = img.ImgId;
+
             }
-            return Json(imgId, JsonRequestBehavior.AllowGet);
+
+            return Json(ImgId, JsonRequestBehavior.AllowGet);
+
         }
 
-        public ActionResult DisplayingImage(int imgID)
+        public ActionResult ImageRetrieve(int imgID)
         {
             dbFilesEntities1 db = new dbFilesEntities1();
-
             var img = db.StoreImages.SingleOrDefault(x => x.ImgId == imgID);
             return File(img.ImgByte, "image/jpg");
         }

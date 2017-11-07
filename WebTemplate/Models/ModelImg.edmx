@@ -15,6 +15,23 @@
           <Property Name="ImgPath" Type="nvarchar" MaxLength="255" />
           <Property Name="Lat" Type="varchar" MaxLength="50" />
           <Property Name="Lon" Type="varchar" MaxLength="50" />
+          <Property Name="IsDelete" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_r_travel_request_participant">
+          <Key>
+            <PropertyRef Name="id_request_participant" />
+          </Key>
+          <Property Name="id_request_participant" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="no_reg_parent" Type="int" />
+          <Property Name="group_code" Type="varchar" MaxLength="10" />
+          <Property Name="no_reg" Type="int" />
+          <Property Name="allowance_idr" Type="float" />
+          <Property Name="allowance_usd" Type="float" />
+          <Property Name="allowance_jpy" Type="float" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="modified_date" Type="datetime" />
+          <Property Name="user_modified" Type="int" />
+          <Property Name="active_flag" Type="bit" />
         </EntityType>
         <EntityType Name="tbl_registration">
           <Key>
@@ -31,6 +48,7 @@
         </EntityType>
         <EntityContainer Name="dbFilesModelStoreContainer">
           <EntitySet Name="StoreImages" EntityType="Self.StoreImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_r_travel_request_participant" EntityType="Self.tb_r_travel_request_participant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_registration" EntityType="Self.tbl_registration" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -47,10 +65,12 @@
           <Property Name="ImgPath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Lat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Lon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsDelete" Type="Int32" />
         </EntityType>
         <EntityContainer Name="dbFilesEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="StoreImages" EntityType="Self.StoreImage" />
           <EntitySet Name="tbl_registration" EntityType="dbFilesModel.tbl_registration" />
+          <EntitySet Name="tb_r_travel_request_participant" EntityType="dbFilesModel.tb_r_travel_request_participant" />
         </EntityContainer>
         <EntityType Name="tbl_registration">
           <Key>
@@ -65,6 +85,22 @@
           <Property Name="Age" Type="Int32" />
           <Property Name="Status" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
         </EntityType>
+        <EntityType Name="tb_r_travel_request_participant">
+          <Key>
+            <PropertyRef Name="id_request_participant" />
+          </Key>
+          <Property Name="id_request_participant" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="no_reg_parent" Type="Int32" />
+          <Property Name="group_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="no_reg" Type="Int32" />
+          <Property Name="allowance_idr" Type="Double" />
+          <Property Name="allowance_usd" Type="Double" />
+          <Property Name="allowance_jpy" Type="Double" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="modified_date" Type="DateTime" Precision="3" />
+          <Property Name="user_modified" Type="Int32" />
+          <Property Name="active_flag" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -74,6 +110,7 @@
           <EntitySetMapping Name="StoreImages">
             <EntityTypeMapping TypeName="dbFilesModel.StoreImage">
               <MappingFragment StoreEntitySet="StoreImages">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
                 <ScalarProperty Name="Lon" ColumnName="Lon" />
                 <ScalarProperty Name="Lat" ColumnName="Lat" />
                 <ScalarProperty Name="ImgId" ColumnName="ImgId" />
@@ -94,6 +131,23 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Sr_no" ColumnName="Sr_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_r_travel_request_participant">
+            <EntityTypeMapping TypeName="dbFilesModel.tb_r_travel_request_participant">
+              <MappingFragment StoreEntitySet="tb_r_travel_request_participant">
+                <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+                <ScalarProperty Name="user_modified" ColumnName="user_modified" />
+                <ScalarProperty Name="modified_date" ColumnName="modified_date" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="allowance_jpy" ColumnName="allowance_jpy" />
+                <ScalarProperty Name="allowance_usd" ColumnName="allowance_usd" />
+                <ScalarProperty Name="allowance_idr" ColumnName="allowance_idr" />
+                <ScalarProperty Name="no_reg" ColumnName="no_reg" />
+                <ScalarProperty Name="group_code" ColumnName="group_code" />
+                <ScalarProperty Name="no_reg_parent" ColumnName="no_reg_parent" />
+                <ScalarProperty Name="id_request_participant" ColumnName="id_request_participant" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

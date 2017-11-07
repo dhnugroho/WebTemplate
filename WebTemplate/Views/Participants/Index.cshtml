@@ -1,0 +1,83 @@
+﻿@model List<WebTemplate.Models.tb_r_travel_request_participant>
+
+@{
+    ViewBag.Title = "PARTICIPANT";
+    Layout = "~/Views/Shared/_LayoutLg.cshtml";
+}
+<div style="height:100px; padding:70px 0 0 0;" class="well navbar-fixed-top">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Menu/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/TravelRequest/">Travel Request</a></li>
+        <li class="breadcrumb-item active">Add Participant</li>
+    </ol>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="Absolute-Center">
+            <hr>
+            <div class="col-sm-12 col-md-10">
+              
+                <form class="width" action="/Home/Contact" id="loginForm">
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input class="form-control" type="text" name='username' placeholder="Noreg." />
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                        <input class="form-control" type="text" name='username' placeholder="Automatic Name" />
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-toolbar btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-plus"></span>&nbsp;ADD</button>
+                    </div>
+                </form>
+                <div class="well">
+                    <img style="height:35px; width:auto;" src="~/img/small_logo_c.png" />
+                    <span><strong>LIST PARTICIPANT :</strong></span>
+                </div>
+                <div class="pre-scrollable" style="padding:0 5px">
+
+                    <p>
+                        @Html.ActionLink("Create New", "Create")
+                    </p>
+                    <table class="table">
+                        <tr>
+                            <th>
+                                No. Reg Parent
+                            </th>
+                            <th>
+                                Group Code
+                            </th>
+                            <th>
+                                No. Reg
+                            </th>
+                            <th>
+                                Opr
+                            </th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.no_reg_parent)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.group_code)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.no_reg)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.id_request_participant })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

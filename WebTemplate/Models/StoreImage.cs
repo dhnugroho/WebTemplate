@@ -20,5 +20,6 @@ namespace WebTemplate.Models
         public string ImgPath { get; set; }
         public string Lat { get; set; }
         public string Lon { get; set; }
+        public Nullable<int> IsDelete { get; set; }
     }
 }
